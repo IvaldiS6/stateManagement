@@ -122,8 +122,8 @@ export class JumpingLeft extends State {
     enter(){
         this.player.maxFrame = 6;
         this.player.frameY = 3;
-        if (this.player.onGround()) this.player.vy -= 20;
-        /*if (!this.player.onGround())*/ this.player.speed = -this.player.maxSpeed * 0.5;
+        if (this.player.onGround()) this.player.vy -= 40;
+        this.player.speed = -this.player.maxSpeed * 0.5;
     }
     handleInput(input){
         if (input === 'PRESS right') this.player.setState(states.JUMPING_RIGHT);
@@ -140,7 +140,7 @@ export class JumpingRight extends State {
     enter(){
         this.player.maxFrame = 6;
         this.player.frameY = 2;
-        if (this.player.onGround()) this.player.vy -= 20;
+        if (this.player.onGround()) this.player.vy -= 40;
         this.player.speed = this.player.maxSpeed * 0.5;
     }
     handleInput(input){
