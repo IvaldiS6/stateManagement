@@ -192,9 +192,9 @@ export class SmashLeft extends State {
         this.player = player;
     }
     enter(){
-        this.player.maxFrame = 7;
+        this.player.maxFrame = 6;
         this.player.frameY = 11;
-        if (!this.player.onGround()) this.player.vy = 90;
+        if (!this.player.onGround()) this.player.vy = 30;
     }
     handleInput(input){
         if (this.player.onGround()) this.player.setState(states.STANDING_LEFT);
@@ -206,9 +206,9 @@ export class SmashRight extends State {
         this.player = player;
     }
     enter(){
-        this.player.maxFrame = 7;
+        this.player.maxFrame = 6;
         this.player.frameY = 10;
-        if (!this.player.onGround()) this.player.vy = 90;
+        if (!this.player.onGround()) this.player.vy = 30;
     }
     handleInput(input){
         if (this.player.onGround()) this.player.setState(states.STANDING_RIGHT);
