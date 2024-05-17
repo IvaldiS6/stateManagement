@@ -16,10 +16,6 @@ window.addEventListener('load', function(){
     let lastTime = 0;
     function animate(timeStamp){
         const deltaTime = timeStamp - lastTime;
-        console.log("typeof timeStamp: " + typeof timeStamp);
-        console.log("timeStamp: " + timeStamp);
-        console.log("typeof lastTime: " + typeof lastTime);
-        console.log("lastTime: " + lastTime);
         lastTime = timeStamp;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         player.update(input.lastKey);
