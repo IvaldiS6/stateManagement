@@ -9,6 +9,8 @@ export const states = {
     JUMPING_RIGHT: 7,
     FALLING_LEFT: 8,
     FALLING_RIGHT: 9,
+    SMASH_LEFT: 10,
+    SMASH_RIGHT: 11,
 }
 class State {
     constructor(state){
@@ -129,7 +131,7 @@ export class JumpingLeft extends State {
         if (input === 'PRESS right') this.player.setState(states.JUMPING_RIGHT);
         else if (this.player.onGround()) this.player.setState(states.STANDING_LEFT);
         else if (this.player.vy >=0) this.player.setState(states.FALLING_LEFT);
-        else if (input === 'PRESS down') this.player.setState(states.SITTING_LEFT);
+        else if (input === 'PRESS down') this.player.setState(states.SMASH_LEFT);
     }
 }
 export class JumpingRight extends State {
@@ -147,7 +149,7 @@ export class JumpingRight extends State {
         if (input === 'PRESS left') this.player.setState(states.JUMPING_LEFT);
         else if (this.player.onGround()) this.player.setState(states.STANDING_RIGHT);
         else if (this.player.vy >= 0) this.player.setState(states.FALLING_RIGHT)
-        else if (input === 'PRESS down') this.player.setState(states.SITTING_RIGHT);
+        else if (input === 'PRESS down') this.player.setState(states.SMASH_RIGHT);
     }
 }
 export class FallingLeft extends State {
@@ -164,7 +166,7 @@ export class FallingLeft extends State {
     handleInput(input){
         if (input === 'PRESS right') this.player.setState(states.FALLING_RIGHT);
         else if (this.player.onGround()) this.player.setState(states.STANDING_LEFT);
-        else if (input === 'PRESS down') this.player.setState(states.SITTING_LEFT);
+        else if (input === 'PRESS down') this.player.setState(states.SMASH_LEFT);
     }
 }
 export class FallingRight extends State {
@@ -181,6 +183,34 @@ export class FallingRight extends State {
     handleInput(input){
         if (input === 'PRESS left') this.player.setState(states.FALLING_LEFT);
         else if (this.player.onGround()) this.player.setState(states.STANDING_RIGHT);
-        else if (input === 'PRESS down') this.player.setState(states.SITTING_RIGHT);
+        else if (input === 'PRESS down') this.player.setState(states.SMASH_RIGHT);
+    }
+}
+export class SmashLeft extends State {
+    constructor(player){
+        super('SMASH LEFT');
+        this.player = player;
+    }
+    enter(){
+        this.player.maxFrame = 7;
+        this.player.frameY = 11;
+        if (!this.player.onGround()) this.player.vy = 10;
+    }
+    handleInput(input){
+        if (this.player.onGround()) this.player.setState(states.STANDING_LEFT);
+    }
+}
+export class SmashRight extends State {
+    constructor(player){
+        super('SMASH RIGHT');
+        this.player = player;
+    }
+    enter(){
+        this.player.maxFrame = 7;
+        this.player.frameY = 10;
+        if (!this.player.onGround()) this.player.vy = 10;
+    }
+    handleInput(input){
+        if (this.player.onGround()) this.player.setState(states.STANDING_RIGHT);
     }
 }
