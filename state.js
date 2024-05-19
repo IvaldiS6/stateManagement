@@ -171,7 +171,7 @@ export class FallingLeft extends State {
 }
 export class FallingRight extends State {
     constructor(player){
-        super('FALLPING RIGHT');
+        super('FALLING RIGHT');
         this.player = player;
     }
     enter(){
